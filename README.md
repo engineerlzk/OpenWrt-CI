@@ -60,3 +60,13 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 > ### 如何下载到编译完成的固件?
 
 进入`Actions`标签页后, 如果相应的集成活动顺利完成 (显示为绿色), 点击页面右上方的`Artifacts`即可看到你的固件 (通常是一个压缩包). 点击即可开始下载.
+
+### 6. 关于同步lean源码
+
+在openwrt-ci.yml中的sudo -E apt-get clean后面加一组workflow即可
+
+      - name: 同步最新的源码
+        run: |
+          git remote add openwrt https://github.com/coolsnowwolf/lede.git
+          git pull openwrt master
+          git remote -v
